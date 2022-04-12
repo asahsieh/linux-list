@@ -39,13 +39,13 @@ TESTS = \
 
 EXAMPLES = \
 	insert-sort \
-	quick-sort
-	#quick-sort-non-recur \
+	quick-sort \
+	quick-sort-non-recur
 
 TESTS := $(addprefix tests/,$(TESTS))
 EXAMPLES := $(addprefix examples/,$(EXAMPLES))
 # dependency of source files
-deps := $(TESTS:%=%.o.d)
+deps := $(TESTS:%=%.o.d) $(EXAMPLES:%=%.o.d)
 
 # Different ways but results are the same
 #TESTS_OK = $(addsuffix .ok,${TESTS})
@@ -80,7 +80,7 @@ $(EXAMPLES): %: %.o
 
 clean:
 	$(VECHO) "  Cleaning...\n"
-	$(Q)$(RM) $(TESTS) $(EXAMPLES) $(TESTS_OK) $(TESTS:=.o) \
-	          $(EXAMPLES:=.0) $(deps)
+	$(Q)$(RM) $(TESTS) $(TESTS_OK) $(TESTS:=.o) \
+	$(EXAMPLES) $(EXAMPLES:=.o) $(deps)
 
 -include $(deps)

@@ -7,6 +7,7 @@
 #include "list.h"
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
+#define MAX_LEN 256
 
 struct listitem {
     uint16_t i;
